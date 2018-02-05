@@ -1,28 +1,22 @@
 # shop-script
 Copy-paste shop for your existing website
 
-demo
----
-[https://ejunkie-shop-script.glitch.me/]
+## demo
+https://ejunkie-shop-script.glitch.me/examples/shop/
 
-basic usage
----
+## usage
 * raw json
   >  properties
 * shop view
->  properties
+  >  properties
 * product view
->  properties
+  >  properties
 
-callback
----
+## callback
 
-template literals
----
+## template literals
 
-template
----
+## template
 
 
-examples
----
+## examples
