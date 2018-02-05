@@ -72,13 +72,13 @@
 
     <!-- helper template, for {tags} -->
     <div id="tags_template" hidden>
-      <a class="tag" href="/?p=shop&c={html_name}">{name}</a>
+      <a class="tag" href="index.html?cat={html_name}">{name}</a>
     </div>
     
     <!-- helper template, for {related_products} -->
     <div id="related_product_template" hidden>
       <div class="row" style="text-align: left">
-        <a href="/?p=product&i={number}" style="color: black;text-decoration: none;">
+        <a href="page.html&i={number}" style="color: black;text-decoration: none;">
           <p><strong>{title}</strong><br/>{tagline}</p>
           <img style="width: auto; max-width: 100%" src="{thumbnail}" alt="{title}" title="{title}">
         </a>
