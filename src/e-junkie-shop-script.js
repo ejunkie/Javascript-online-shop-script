@@ -33,7 +33,7 @@ function EJ_FetchItems(client_id, callback){
 		var self = this
 		this.xhttp.onreadystatechange = function() {
 		    if (this.readyState == 4 && this.status == 200) {
-				var response = JSON.parse(self.xhttp.responseText)
+				var response = JSON.parse(self.xhttp.responseText) 
 				var headers = self.xhttp.getResponseHeader('last-modified'); 
 			    var arr = headers.trim().split(/[\r\n]+/);
 			    var last_modified_remote = new Date(arr[0])
