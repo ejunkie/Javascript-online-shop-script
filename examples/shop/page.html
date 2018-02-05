@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <script src="//www.e-junkie.com/ecom/e-junkie-shop-script.js"></script>
+    <script src="//www.e-junkie.com/ecom/box_fb_n.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+    <script src="/script.js"></script>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+
+    <script>
+      $( document ).ready(function() {
+        var item_number=getURLParameter("i",window.location.search); 
+
+        // initialize
+        var ej = new EJ_Product({
+                  client_id:328984,
+                  item_number:item_number,
+                  custom_thumbnail:{'pntbtr':'http://peepalfarm.org/images/pnt_btr_joey01_600.jpg'},
+                  show_related:true,
+                  show_tags:true,
+                  show_related_max:4,
+                  container: "product_page_container"
+        }, ej_product_callback); 
+      });
+
+    </script>
+  </head>
+
+  <body>
+
+    <div id="product_page_container" style="margin-top: 30px;">
+      <img src="https://cdn.glitch.com/185c9047-e14e-4bcb-8af1-965424fa2901%2Floadinganimation.gif?1517815160179" style="max-width: 500px;margin: 0 auto;margin-top: 15vh;display: block;">
+    </div>
+
+    <!-- templates -->
+
+    <!-- product page listing -->
+    <div id="listing_template" hidden>
+      <div class="page">
+        <div class="row" id="{identifier}" style="{style}">
+            <div class="two-thirds column" id="row_{number}">
+              {tags}
+              <p><strong itemprop="name">{title}</strong><br/><span itemprop="description">{description}</span></p>
+              <img itemprop="image" style="width: auto; max-width: 100%" id="thumbnail_element" src="{thumbnail}" alt="{title}" title="{title}">
+              <img itemprop="image" style="width: auto; max-width: 100%" id="custom_thumbnail_element" src="{custom_thumbnail}" alt="{title}" title="{title}">
+              <p>{details}</p>
+            </div>
+
+            <div class="one-third column">
+              {form}
+              {options_template}
+              <p  itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span itemprop="price">₹{price}</span></p>
+              <button type="button" class="cart_btn {button_class}" onclick="{onclick}">
+                        Add To Cart
+                    </button>	
+              {/form}
+              <p style="color: #009900;"><strong>Related Products</strong></p>
+              {related_products}
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- helper template, for {tags} -->
+    <div id="tags_template" hidden>
+      <a class="tag" href="/?p=shop&c={html_name}">{name}</a>
+    </div>
+    
+    <!-- helper template, for {related_products} -->
+    <div id="related_product_template" hidden>
+      <div class="row" style="text-align: left">
+        <a href="/?p=product&i={number}" style="color: black;text-decoration: none;">
+          <p><strong>{title}</strong><br/>{tagline}</p>
+          <img style="width: auto; max-width: 100%" src="{thumbnail}" alt="{title}" title="{title}">
+        </a>
+      </div>
+    </div>
+
+    <!-- helper template, for select elements -->
+    <div id="dropdown_template" hidden>
+      <label class="label">{label}</label>
+      {hidden}
+      <select name="{name}" style="max-width:250px;">{options}</select>
+    </div>
+
+    <!-- helper template, for input elements -->
+    <div id="text_template" hidden>
+      <label class="label">{label}</label>
+      <input class="input" type="text" placeholder="{placeholder}" name="{name}">
+      {hidden}
+    </div>
+
+  </body>
+  
+</html>
