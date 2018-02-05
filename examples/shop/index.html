@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="//www.e-junkie.com/ecom/e-junkie-shop-script.js"></script>
+    <script src="//www.e-junkie.com/ecom/box_fb_n.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+
+    <script src="/script.js"></script>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.25/jquery.fancybox.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+
+    <script>
+      $( document ).ready(function() {
+        // initialize
+        var category = getURLParameter("cat",window.location.search); 
+        var ej = new EJ_Shop({
+          client_id:328984,
+          filters:[category],
+          hidden:['1566084','1566571','1556436', '1556552', '1556556','1566570','1566568','1566569','1556435'],
+          pinned:['pntbtr','vgnt150'],
+          pinned_down:['1566571'],
+          offset:8,
+          lazy_loading:true,
+          lazy_loading_eff:400,
+          container: "shop_container"
+       },ej_shop_callback);
+     });
+      
+    </script>
+    
+  </head>
+        
+  <body>
+    <!-- Project Helper -->
+    <script src="https://button.glitch.me/button.js"></script>
+    <div style="position:fixed; top:20px; right:20px;" class="glitchButton"></div>
+
+    
+    <!-- navigation elements with events tied to shop script -->
+    <div class="row">
+        <div class="one-third column">
+          <input class="input" type="text" placeholder="Search Products" id="ej_search_handler">
+        </div>
+        <div class="one-third column">
+          <select id="ej_filter_handler"></select>          
+        </div>
+        <div class="one-third column">
+          <select id="ej_sort_handler">
+            <option value="Latest">Latest</option>
+            <option value="Popular">Popular</option>
+          </select> 
+        </div>
+    </div>
+
+    <!-- shop script will look for this div and populate it with your e-junkie product feed  -->
+    <div id="shop_container">
+      <img src="https://cdn.glitch.com/185c9047-e14e-4bcb-8af1-965424fa2901%2Floadinganimation.gif?1517815160179" style="max-width: 200px;margin: 0 auto;margin-top: 15vh;display: block;">
+    </div>
+    
+    <!-- templates -->
+    
+    <!-- shop index listing -->
+    <div id="listing_template" hidden>
+      
+        <!-- product box -->
+        <div class="index" id="{identifier}" style="{style}">
+            <p class="product_title"><a href="/page.html?i={number}"><strong>{title}</strong></a></p>
+            <div id="row_{number}" style="padding: 5px;">
+              <div id="modal_div_{id}" data-fancybox data-src="#modal_{identifier}">
+                <p>{tagline}</p>
+                <div class="desktop-friendly thumbnail_holder" style="background-image: url('{thumbnail}');height: 180px;background-size: cover;width: 100%; background-position: center; "></div>
+                <img class="mobile-friendly" src="{thumbnail}" alt="{title}" title="{title}">
+                <p>₹{price}</p>
+              </div>
+              {form}
+                <button type="button" id="button_element_{id}" class="cart_btn {button_class}" onclick="{onclick}">Add To Cart</button>   
+              {/form}
+            </div>    
+        </div>
+        
+        <!-- modal that will be shown on clicking image or options button -->
+        <div class="modal" id="modal_{identifier}" style="display: none">
+            <div class="row" style="text-align: left">
+                <div class="one-half column">
+                    <p><strong>{title}</strong></p>
+                    <!-- <img src="{custom_thumbnail}" alt="{title}" title="{title}">-->
+                    <quote style="font-size: 14px;">{description}</quote>
+                    <div class="desktop-friendly">
+                        {form}
+                        {options_template}
+                        <p>₹{price}</p>
+                        <button type="button" class="cart_btn {button_class}" onclick="{onclick}">
+                        Add To Cart
+                        </button>
+                        {/form}
+                    </div>
+                </div>
+                <div class="one-half column SndCol"> 
+                    <p style="font-size: 14px;">
+                      {details}
+                    </p>
+                    <div class="mobile-friendly">
+                        {form}
+                        {options_template}
+                        <p>₹{price}</p>
+                        <button type="button" class="cart_btn {button_class}" onclick="{onclick}">
+                        Add To Cart
+                        </button>
+                        {/form}
+                    </div>
+                </div>    
+            </div>
+        </div>
+      
+    </div>
+
+    
+    
+    <!-- helper template, for select elements -->
+    <div id="dropdown_template" hidden>
+      <label class="label">{label}</label>
+      {hidden}
+      <select name="{name}" style="max-width: 250px">{options}</select>
+    </div>
+
+    <!-- helper template, for input elements -->
+    <div id="text_template" hidden>
+      <label class="label">{label}</label>
+      <input class="input" type="text" placeholder="{placeholder}" name="{name}">
+      {hidden}
+    </div>
+
+    
+  </body>
+
+</html>
